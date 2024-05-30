@@ -24,6 +24,7 @@ const HomeFilters = () => {
             }
         }))
     }
+
     return (
         <View style={styles.container}>
             <View style={[GST.FLEX_ROW, styles.filterHeaderView]}>

@@ -43,4 +43,5 @@ export const COLORS = {
   FILTER_BG: '#FBFBFB',
   TRANSPARENT_ICON: '#1D1D1D66',
   CARD_TEXT: '#CAC8C8',
+  BLUR: '#FFFFFF1A',
 };

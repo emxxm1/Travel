@@ -5,7 +5,22 @@ import { RF } from '../../../../shared/theme/responsive';
 import { tourData } from '../../../../shared/utils/data';
 
 const Tours = () => {
-    const [tours, setTours] = useState<any>(tourData)
+    const [tours, setTours] = useState<any>(tourData);
+
+    const onPressFavorite = (item: TourItem) => {
+        setTours(tours?.map((elem: any) => {
+            if (item.id === elem.id) {
+                return {
+                    ...elem,
+                    selection: !elem?.selection,
+                }
+            } else {
+                return {
+                    ...elem,
+                }
+            }
+        }))
+    }
     return (
         <View style={styles.container}>
             <FlatList
@@ -14,7 +29,7 @@ const Tours = () => {
                 horizontal
                 style={styles.flatlist}
                 keyExtractor={(item: any, index: number) => `key-${index}`}
-                renderItem={({ item }) => <TourCard item={item} />}
+                renderItem={({ item }) => <TourCard onPressFavorite={() => onPressFavorite(item)} item={item} />}
             />
         </View>
     );

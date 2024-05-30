@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, Image } from 'react-native';
 import { RF } from '../../../../shared/theme/responsive';
 import { divider, filter } from '../../../../assets/icons';
@@ -6,10 +6,16 @@ import { GST } from '../../../../shared/theme/globalStyles';
 import { COLORS } from '../../../../shared/theme/colors';
 
 const HomeSearch = () => {
+    const [search, setSearch] = useState<string>('');
+
+    const onType = (searchValue: string) => {
+        setSearch(searchValue);
+    }
+
     return (
         <View style={styles.container}>
             <View style={[GST.FLEX_ROW, styles.input]}>
-                <TextInput placeholder={'Search Places'} placeholderTextColor={COLORS.LIGHTGRAY} style={styles.textInput} />
+                <TextInput returnKeyType='search' value={search} onChangeText={onType} placeholder={'Search Places'} placeholderTextColor={COLORS.LIGHTGRAY} style={styles.textInput} />
                 <Image resizeMode='contain' source={divider} style={styles.divider} />
                 <Image resizeMode='contain' source={filter} style={styles.filterPic} />
             </View>

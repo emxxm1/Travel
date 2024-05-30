@@ -5,16 +5,18 @@ import CustomText from '../../../../shared/components/customText';
 import { GST } from '../../../../shared/theme/globalStyles';
 import { heart, marker, rating } from '../../../../assets/icons';
 import { COLORS } from '../../../../shared/theme/colors';
+import { BlurView } from '@react-native-community/blur';
 
 interface TourCardProps {
     item: TourItem;
+    onPressFavorite: () => void;
 }
-const TourCard = ({ item }: TourCardProps) => {
+const TourCard = ({ item, onPressFavorite }: TourCardProps) => {
     return (
         <View key={item?.id} style={styles.container}>
-            <ImageBackground resizeMode="cover" style={styles.imageStyle} source={item?.image}>
-                <Pressable style={styles.heartView}>
-                    <Image source={heart} style={styles.heartIcon} />
+            <ImageBackground imageStyle={styles.imageRadius} resizeMode="cover" style={styles.imageStyle} source={item?.image}>
+                <Pressable onPress={onPressFavorite} hitSlop={GST.HITSLOP} style={styles.heartView}>
+                    <Image tintColor={item?.selection ? COLORS.BLACKGRAY : COLORS.WHITE} source={heart} style={styles.heartIcon} />
                 </Pressable>
                 <Footer item={item} />
             </ImageBackground>
@@ -27,31 +29,51 @@ interface FooterProps {
 }
 const Footer = ({ item }: FooterProps) => {
     return (
-        <View style={styles.footer}>
-            <CustomText size={16} color={COLORS.WHITE}>
-                {item?.title}
-            </CustomText>
-            <View style={GST.FLEX_ROW}>
-                <Image resizeMode='contain' style={styles.icons} source={marker} />
-                <CustomText size={14} color={COLORS.CARD_TEXT}>
-                    {item?.location}
+        <BlurView
+            style={styles.blurView}
+            blurType="dark"
+            blurAmount={7}
+            blurRadius={1}
+            autoUpdate
+            overlayColor={COLORS.TRANSPARENT_ICON}
+        >
+            <View style={styles.footer}>
+                <CustomText style={styles.title} size={16} color={COLORS.WHITE}>
+                    {item?.title}
                 </CustomText>
-                <Image resizeMode='contain' style={styles.icons} source={rating} />
-                <CustomText size={14} color={COLORS.CARD_TEXT}>
-                    {item?.rating}
-                </CustomText>
+                <View style={[GST.FLEX_ROW, styles.descriptionView]}>
+                    <View style={GST.FLEX_ROW}>
+                        <Image resizeMode='contain' style={styles.icons} source={marker} />
+                        <CustomText size={13} color={COLORS.CARD_TEXT}>
+                            {item?.location}
+                        </CustomText>
+                    </View>
+                    <View style={GST.FLEX_ROW}>
+                        <Image resizeMode='contain' style={styles.icons} source={rating} />
+                        <CustomText size={13} color={COLORS.CARD_TEXT}>
+                            {item?.rating}
+                        </CustomText>
+                    </View>
+                </View>
             </View>
-        </View>
+        </BlurView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        width: RF(220),
+        width: RF(200),
         height: RF(300),
-        borderRadius: RF(20),
         marginRight: RF(20),
-        position: 'relative'
+        position: 'relative',
+        shadowColor: COLORS.BLACK,
+        shadowOffset: {
+            width: 0,
+            height: 8,
+        },
+        shadowOpacity: 0.21,
+        shadowRadius: 8.19,
+        elevation: 11,
     },
     imageStyle: {
         width: '100%',
@@ -59,16 +81,21 @@ const styles = StyleSheet.create({
     },
     icons: {
         width: RF(10),
-        height: RF(16)
+        height: RF(16),
+        marginRight: RF(5)
     },
-    footer: {
-        backgroundColor: 'red',
-        marginHorizontal: RF(15),
-        padding: RF(10),
-        borderRadius: RF(20),
+    descriptionView: {
+        justifyContent: 'space-between'
+    },
+    footer: {},
+    blurView: {
         position: 'absolute',
-        bottom: 20
-
+        marginHorizontal: RF(15),
+        padding: RF(7),
+        borderRadius: RF(10),
+        bottom: 20,
+        width: '90%',
+        alignSelf: 'center'
     },
     heartIcon: {
         width: RF(22),
@@ -84,6 +111,12 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         marginRight: RF(10),
         marginTop: RF(10)
+    },
+    imageRadius: {
+        borderRadius: RF(20)
+    },
+    title: {
+        paddingBottom: RF(5)
     }
 });
 

@@ -3,7 +3,6 @@ import { StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ROUTES } from '../../../shared/utils/routes';
 import BottomTabs from '../../tabs/bottomTabs';
-import Home from '../../../screens/general/home';
 
 const Stack = createStackNavigator();
 const MainStack = () => {

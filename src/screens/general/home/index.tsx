@@ -8,7 +8,7 @@ import Tours from './components/tours';
 
 const Home = () => {
     return (
-        <Wrapper>
+        <Wrapper noPaddingBottom>
             <ScrollView>
                 <HomeHeader />
                 <HomeSearch />

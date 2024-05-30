@@ -1,12 +1,15 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './styles';
+import Wrapper from '../../../shared/components/wrapper';
 
 const Profile = () => {
     return (
-        <View style={styles.container}>
-            <Text>Profile Hello</Text>
-        </View>
+        <Wrapper noPaddingBottom>
+            <View style={styles.container}>
+                <Text>Profile Hello</Text>
+            </View>
+        </Wrapper>
     );
 };
 

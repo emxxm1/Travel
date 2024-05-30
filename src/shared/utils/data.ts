@@ -26,11 +26,11 @@ const filterData: any[] = [
 const tourData: any[] = [
   {
     id: 1,
-    title: 'Skardu',
-    selection: true,
-    location: 'Sakrdu GB',
+    title: 'Kashmir',
+    selection: false,
+    location: 'Azad Kashmir',
     rating: '5.0',
-    image: skardu,
+    image: kashmir,
   },
   {
     id: 2,
@@ -42,11 +42,11 @@ const tourData: any[] = [
   },
   {
     id: 3,
-    title: 'Kashmir',
-    selection: false,
-    location: 'Azad Kashmir',
+    title: 'Skardu',
+    selection: true,
+    location: 'Sakrdu GB',
     rating: '5.0',
-    image: kashmir,
+    image: skardu,
   },
   {
     id: 4,
