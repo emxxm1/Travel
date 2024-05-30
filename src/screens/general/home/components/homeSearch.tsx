@@ -16,8 +16,10 @@ const HomeSearch = () => {
         <View style={styles.container}>
             <View style={[GST.FLEX_ROW, styles.input]}>
                 <TextInput returnKeyType='search' value={search} onChangeText={onType} placeholder={'Search Places'} placeholderTextColor={COLORS.LIGHTGRAY} style={styles.textInput} />
-                <Image resizeMode='contain' source={divider} style={styles.divider} />
-                <Image resizeMode='contain' source={filter} style={styles.filterPic} />
+                <View style={[GST.FLEX_ROW, styles.iconView]}>
+                    <Image resizeMode='contain' source={divider} style={styles.divider} />
+                    <Image resizeMode='contain' source={filter} style={styles.filterPic} />
+                </View>
             </View>
         </View>
     );
@@ -35,18 +37,21 @@ const styles = StyleSheet.create({
     filterPic: {
         width: RF(24),
         height: RF(21),
-        flex: 0.1
     },
     divider: {
         width: RF(2),
         height: RF(20),
-        flex: 0.1
     },
     input: {
         borderWidth: 1,
         paddingHorizontal: RF(10),
         borderRadius: RF(12),
         borderColor: COLORS.BORDERCOLOR
+    },
+    iconView: {
+        paddingRight: RF(10),
+        flex: 0.2,
+        justifyContent: 'space-between'
     }
 });
 
